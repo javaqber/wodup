@@ -14,6 +14,11 @@ export class ClaseService {
     return this.http.get<any[]>(this.baseUrl);
   }
 
+  // Obtener las clases del día actual (para la página /reservas)
+  obtenerClasesDeHoy(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/hoy`);
+  }
+
   crearClase(claseData: any): Observable<any> {
     return this.http.post(this.baseUrl, claseData);
   }

@@ -14,6 +14,7 @@ import { AuthService } from '../../services/auth.service.ts';
 export class ReservasComponent implements OnInit {
   franjas: { inicio: string; fin: string }[] = [];
   clases: any[] = [];
+  claseDeHoy: any = null;        // <-- propiedad añadida
   reservasUsuario: any[] = [];
   mensaje = '';
   error = '';
@@ -26,7 +27,7 @@ export class ReservasComponent implements OnInit {
 
   ngOnInit(): void {
     this.generarFranjasFijas();
-    this.cargarClases();
+    this.cargarClasesDeHoy();
     this.cargarReservasUsuario();
   }
 
@@ -45,36 +46,48 @@ export class ReservasComponent implements OnInit {
     });
   }
 
-  cargarClases(): void {
-    this.claseService.obtenerClases().subscribe({
-      next: (data) => this.clases = data,
-      error: () => this.error = 'Error al cargar las clases.'
+  cargarClasesDeHoy(): void {
+    this.claseService.obtenerClasesDeHoy().subscribe({
+      next: (data) => {
+        this.clases = data || [];
+
+        // si el backend devuelve una lista, tomamos la primera como "claseDeHoy"
+        this.claseDeHoy = (this.clases.length > 0) ? this.clases[0] : null;
+
+        console.log('Clases de hoy:', this.clases);
+      },
+      error: (err) => {
+        console.error('Error cargarClasesDeHoy', err);
+        this.error = 'Error al cargar las clases de hoy.';
+      }
     });
   }
 
   cargarReservasUsuario(): void {
     this.reservaService.obtenerMisReservas().subscribe({
-      next: (data) => this.reservasUsuario = data,
-      error: () => this.error = 'Error al cargar tus reservas.'
+      next: (data) => this.reservasUsuario = data || [],
+      error: (err) => {
+        console.error('Error cargarReservasUsuario', err);
+        this.error = 'Error al cargar tus reservas.';
+      }
     });
   }
 
-  // Verifica si hay una clase activa en la franja
   obtenerClasePorFranja(franja: { inicio: string; fin: string }) {
     const hoy = new Date().toISOString().split('T')[0];
     return this.clases.find(c =>
       c.fecha === hoy &&
-      c.horaInicio.substring(0,5) === franja.inicio &&
-      c.horaFin.substring(0,5) === franja.fin
+      c.horaInicio?.substring(0, 5) === franja.inicio &&
+      c.horaFin?.substring(0, 5) === franja.fin
     );
   }
 
   estaReservado(claseId: number): boolean {
-    return this.reservasUsuario.some(r => r.clase.id === claseId);
+    return this.reservasUsuario.some(r => r.clase && r.clase.id === claseId);
   }
 
   capacidadDisponible(clase: any): boolean {
-    return clase.reservas && clase.reservas.length < clase.capacidad;
+    return (clase.reservas && clase.reservas.length < clase.capacidad) || (!clase.reservas && clase.capacidad > 0);
   }
 
   franjaPasada(horaInicio: string): boolean {
@@ -91,7 +104,10 @@ export class ReservasComponent implements OnInit {
         this.mensaje = 'Clase reservada correctamente ✅';
         this.cargarReservasUsuario();
       },
-      error: () => this.error = 'Error al reservar la clase.'
+      error: (err) => {
+        console.error('Error reservarClase', err);
+        this.error = 'Error al reservar la clase.';
+      }
     });
   }
 
@@ -101,7 +117,10 @@ export class ReservasComponent implements OnInit {
         this.mensaje = 'Reserva cancelada correctamente ❌';
         this.cargarReservasUsuario();
       },
-      error: () => this.error = 'Error al cancelar la reserva.'
+      error: (err) => {
+        console.error('Error cancelarReserva', err);
+        this.error = 'Error al cancelar la reserva.';
+      }
     });
   }
 }

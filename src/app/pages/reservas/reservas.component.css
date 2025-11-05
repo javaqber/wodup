@@ -1,67 +1,130 @@
 .reservas-container {
-  max-width: 800px;
-  margin: 0 auto;
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+h2 {
   text-align: center;
+  color: #222;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+.no-clases {
+  text-align: center;
+  color: #777;
+  font-style: italic;
 }
 
 .franjas {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 .franja-item {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  background: #e8f0fe;
-  padding: 10px 15px;
+  justify-content: space-between;
+  background-color: #f8fafc;
+  border: 1px solid #e0e6ed;
   border-radius: 10px;
-  transition: background 0.3s;
+  padding: 14px 18px;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
-.franja-pasada {
-  background: #b0b0b0;
+.franja-item:hover {
+  background-color: #eef3f8;
+  transform: translateY(-2px);
+}
+
+.franja-hora {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #333;
+  min-width: 90px;
+}
+
+.franja-info {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.clase-nombre {
+  font-weight: 600;
+  color: #1a73e8;
+  margin: 0;
+}
+
+.coach {
   color: #555;
+  font-size: 0.95rem;
+  margin: 2px 0;
+}
+
+.capacidad {
+  color: #777;
+  font-size: 0.9rem;
+}
+
+.franja-acciones {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .btn-reservar {
-  background-color: #2d6a4f;
+  background-color: #1a73e8;
   color: white;
   border: none;
-  padding: 6px 12px;
-  border-radius: 8px;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 0.9rem;
   cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-reservar:hover {
+  background-color: #1557b0;
 }
 
 .btn-cancelar {
-  background-color: #c1121f;
+  background-color: #e84545;
   color: white;
   border: none;
-  padding: 6px 12px;
-  border-radius: 8px;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 0.9rem;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.btn-llena {
-  background-color: gray;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 8px;
+.btn-cancelar:hover {
+  background-color: #c0392b;
 }
 
-.sin-clase {
+.pasada {
+  opacity: 0.6;
+  background-color: #f1f1f1;
+}
+
+.pasada-texto {
+  color: #999;
   font-style: italic;
-  color: #666;
 }
 
-.mensaje {
-  color: green;
-  font-weight: bold;
+.mensaje-exito {
+  color: #2e7d32;
+  text-align: center;
+  margin-top: 20px;
 }
 
-.error {
-  color: red;
-  font-weight: bold;
+.mensaje-error {
+  color: #d32f2f;
+  text-align: center;
+  margin-top: 20px;
 }

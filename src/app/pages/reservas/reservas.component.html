@@ -1,40 +1,56 @@
 <div class="reservas-container">
-  <h2>Reservas de hoy</h2>
+  <h2>Reservas del día</h2>
 
-  <div *ngIf="mensaje" class="mensaje">{{ mensaje }}</div>
-  <div *ngIf="error" class="error">{{ error }}</div>
+  <div *ngIf="!claseDeHoy" class="no-clases">
+    <p>No hay clases programadas para hoy.</p>
+  </div>
 
-  <div class="franjas">
-    <div *ngFor="let franja of franjas" 
-         class="franja-item"
-         [ngClass]="{'franja-pasada': franjaPasada(franja.inicio)}">
-      <span>{{ franja.inicio }} - {{ franja.fin }}</span>
+  <div *ngIf="claseDeHoy">
+    <div class="franjas">
+      <div
+        *ngFor="let franja of franjas"
+        [class.pasada]="franjaPasada(franja.inicio)"
+        class="franja-item"
+      >
+        <div class="franja-hora">
+          {{ franja.inicio }} - {{ franja.fin }}
+        </div>
 
-      <ng-container *ngIf="!franjaPasada(franja.inicio)">
-        <ng-container *ngIf="obtenerClasePorFranja(franja) as clase">
-          <button *ngIf="!estaReservado(clase.id) && capacidadDisponible(clase)"
-                  (click)="reservarClase(clase.id)"
-                  class="btn-reservar">
-            Reservar clase
-          </button>
+        <div class="franja-info">
+          <p class="clase-nombre">{{ claseDeHoy.nombre }}</p>
+          <p class="coach">Coach: {{ claseDeHoy.coachNombre || 'Sin asignar' }}</p>
+          <p class="capacidad">
+            Capacidad: {{ claseDeHoy.capacidad }}
+          </p>
+        </div>
 
-          <button *ngIf="estaReservado(clase.id)"
-                  (click)="cancelarReserva(clase.id)"
-                  class="btn-cancelar">
-            Cancelar reserva
-          </button>
+        <div class="franja-acciones">
+          <ng-container *ngIf="!franjaPasada(franja.inicio)">
+            <button
+              *ngIf="!estaReservado(claseDeHoy.id)"
+              (click)="reservarClase(claseDeHoy.id)"
+              class="btn-reservar"
+            >
+              Reservar
+            </button>
 
-          <button *ngIf="!capacidadDisponible(clase) && !estaReservado(clase.id)"
-                  disabled
-                  class="btn-llena">
-            Clase llena
-          </button>
-        </ng-container>
+            <button
+              *ngIf="estaReservado(claseDeHoy.id)"
+              (click)="cancelarReserva(claseDeHoy.id)"
+              class="btn-cancelar"
+            >
+              Cancelar
+            </button>
+          </ng-container>
 
-        <ng-container *ngIf="!obtenerClasePorFranja(franja)">
-          <span class="sin-clase">Sin clase programada</span>
-        </ng-container>
-      </ng-container>
+          <ng-container *ngIf="franjaPasada(franja.inicio)">
+            <span class="pasada-texto">Finalizada</span>
+          </ng-container>
+        </div>
+      </div>
     </div>
   </div>
+
+  <p *ngIf="mensaje" class="mensaje-exito">{{ mensaje }}</p>
+  <p *ngIf="error" class="mensaje-error">{{ error }}</p>
 </div>
