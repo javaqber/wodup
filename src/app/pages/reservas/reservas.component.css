@@ -1,0 +1,67 @@
+.reservas-container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.franjas {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.franja-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #e8f0fe;
+  padding: 10px 15px;
+  border-radius: 10px;
+  transition: background 0.3s;
+}
+
+.franja-pasada {
+  background: #b0b0b0;
+  color: #555;
+}
+
+.btn-reservar {
+  background-color: #2d6a4f;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-cancelar {
+  background-color: #c1121f;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-llena {
+  background-color: gray;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+}
+
+.sin-clase {
+  font-style: italic;
+  color: #666;
+}
+
+.mensaje {
+  color: green;
+  font-weight: bold;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+}

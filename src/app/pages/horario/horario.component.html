@@ -1,0 +1,29 @@
+<div class="horario-container">
+  <h2>Horario del Box</h2>
+
+  <section class="horario-bloque">
+    <h3>Clases de mañana</h3>
+    <div class="horario-grid">
+      <div *ngFor="let clase of clasesManana" class="clase-card">
+        <div class="clase-hora">{{ clase.hora }}</div>
+        <div class="clase-info">
+          <p class="tipo">{{ clase.tipo }}</p>
+          <p class="coach">Coach: {{ clase.coach }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="horario-bloque">
+    <h3>Clases de tarde</h3>
+    <div class="horario-grid">
+      <div *ngFor="let clase of clasesTarde" class="clase-card">
+        <div class="clase-hora">{{ clase.hora }}</div>
+        <div class="clase-info">
+          <p class="tipo">{{ clase.tipo }}</p>
+          <p class="coach">Coach: {{ clase.coach }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

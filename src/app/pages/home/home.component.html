@@ -1,0 +1,31 @@
+<div class="home-container">
+  <h2>Bienvenido, {{ usuario?.nombre }} {{ usuario?.apellido }}</h2>
+
+  <section class="reservas">
+    <h3>Mis reservas</h3>
+
+    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+
+    <ng-container *ngIf="reservas.length > 0; else sinReservas">
+      <ul>
+        <li *ngFor="let reserva of reservas">
+          Clase: {{ reserva.clase?.nombre || 'Sin nombre' }} -
+          Fecha: {{ reserva.clase?.fecha || 'Sin fecha' }} -
+          Hora: {{ reserva.clase?.horaInicio }} a {{ reserva.clase?.horaFin }}
+        </li>
+      </ul>
+    </ng-container>
+
+    <ng-template #sinReservas>
+      <p>No tienes reservas todavía.</p>
+    </ng-template>
+  </section>
+
+  <div class="botones-home">
+    <button routerLink="/reservas">Reservas</button>
+    <button routerLink="/horario">Horario</button>
+    <button *ngIf="usuario?.rol === 'ROLE_ADMIN' || usuario?.rol === 'ROLE_COACH'" routerLink="/clases">
+      Clases
+    </button>
+  </div>
+</div>
