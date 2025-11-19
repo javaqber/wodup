@@ -6,18 +6,31 @@ import {
   HttpRequest
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AuthService } from './auth.service.ts';
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) {
+    if (authService) {
+      console.log('✅ AuthInterceptor: Servicio AuthService inyectado correctamente.');
+    } else {
+      console.error('🛑 AuthInterceptor: ¡AuthService NO se ha inyectado! (undefined)');
+    }
+  }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    console.log(`🚀 AuthInterceptor: Ejecutándose para la URL: ${req.url}`);
+    
     const token = this.authService.getToken();
 
+    // 💡 ¡¡¡NECESITO VER ESTO EN TU CONSOLA!!!
+    console.log('--- VALOR DEL TOKEN (DEBUG) ---');
+    console.log(token);
+    console.log('---------------------------------');
+
     if (token) {
-      // Clonamos la petición y añadimos el header Authorization
+      console.log('🔑 AuthInterceptor: Token encontrado. Adjuntando header Bearer...');
       const authReq = req.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`
@@ -26,7 +39,7 @@ export class AuthInterceptor implements HttpInterceptor {
       return next.handle(authReq);
     }
 
-    // Si no hay token, dejamos la petición tal cual
+    console.warn(`🚦 AuthInterceptor: No se encontró token para ${req.url}.`);
     return next.handle(req);
   }
 }

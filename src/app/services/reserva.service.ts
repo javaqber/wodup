@@ -16,12 +16,12 @@ export class ReservaService {
   }
 
   // Crear una nueva reserva
-  crearReserva(claseId: number): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}`, { claseId });
+  crearReserva(reservaData: { claseId: number; horaInicio: string; horaFin: string }): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}`, reservaData);
   }
 
   // Cancelar una reserva
-  cancelarReserva(claseId: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/${claseId}`);
+  cancelarReserva(reservaId: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/${reservaId}`);
   }
 }

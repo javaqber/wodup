@@ -26,21 +26,22 @@
 
         <div class="franja-acciones">
           <ng-container *ngIf="!franjaPasada(franja.inicio)">
-            <button
-              *ngIf="!estaReservado(claseDeHoy.id)"
-              (click)="reservarClase(claseDeHoy.id)"
+            <ng-container *ngIf="getReservaParaFranja(claseDeHoy.id, franja.inicio) as reservaActual; else botonReservar">
+              <!--Boton CANCELAR-->
+              <button
+                (click)="cancelarReserva(reservaActual.id)"
+                class="btn-cancelar"
+              > Cancelar
+              </button>
+            </ng-container>
+            <ng-template #botonReservar>
+              <!--Boton RESERVAR-->
+              <button
+              (click)="reservarClase(claseDeHoy, franja)"
               class="btn-reservar"
-            >
-              Reservar
-            </button>
-
-            <button
-              *ngIf="estaReservado(claseDeHoy.id)"
-              (click)="cancelarReserva(claseDeHoy.id)"
-              class="btn-cancelar"
-            >
-              Cancelar
-            </button>
+              >  Reservar
+              </button>
+            </ng-template>
           </ng-container>
 
           <ng-container *ngIf="franjaPasada(franja.inicio)">

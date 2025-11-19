@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Router } from '@angular/router';
-import { UserService } from '../../services/user.service';
+import { ReservaService } from '../../services/reserva.service';
+import { AuthService } from '../../services/auth.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -12,67 +13,38 @@ import { UserService } from '../../services/user.service';
 })
 export class HomeComponent implements OnInit {
   usuario: any = null;
-  reservas: any[] = [];
-  errorMessage = '';
+  misReservas: any[] = [];
+  loading = true;
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private reservaService: ReservaService
+  ) {}
 
   ngOnInit(): void {
-    this.cargarUsuario();
-    this.cargarReservas();
+    this.usuario = this.authService.getUsuarioActual();
+    this.cargarMisReservas();
   }
 
-  cargarUsuario() {
-    this.usuario = this.userService.obtenerUsuarioActual();
-    if (!this.usuario) {
-      this.router.navigate(['/login']);
-    }
+  // verificar roles y mostrar el botón de Clases
+  esAdminOCoach(): boolean {
+    if (!this.usuario || !this.usuario.rol) return false;
+    const rol = this.usuario.rol; 
+    // Ajusta los strings según como se guarden los roles en la DB
+    return rol === 'ADMIN' || rol === 'COACH' || rol === 'ROLE_ADMIN' || rol === 'ROLE_COACH';
   }
 
-  cargarReservas() {
-    this.userService.getMisReservas().subscribe({
-      next: (data: any[]) => {
-        this.reservas = data;
+  cargarMisReservas(): void {
+    this.reservaService.obtenerMisReservas().subscribe({
+      next: (data) => {
+        // Filtramos solo las reservas activas
+        this.misReservas = data.filter(r => r.estado === 'CONFIRMADA');
+        this.loading = false;
       },
       error: (err) => {
-        console.error(err);
-        this.reservas = [];
+        console.error('Error al cargar reservas en Home', err);
+        this.loading = false;
       }
     });
-  }
-
-  // =========================
-  // MÉTODOS DE RESERVA
-  // =========================
-  reservarClase(claseId: number) {
-    this.userService.reservarClase(claseId).subscribe({
-      next: () => this.cargarReservas(),
-      error: (err) => {
-        console.error(err);
-        this.errorMessage = 'No se pudo reservar la clase.';
-      }
-    });
-  }
-
-  cancelarReserva(reservaId: number) {
-    this.userService.cancelarReserva(reservaId).subscribe({
-      next: () => this.cargarReservas(),
-      error: (err) => {
-        console.error(err);
-        this.errorMessage = 'No se pudo cancelar la reserva.';
-      }
-    });
-  }
-
-  irReservas() {
-  this.router.navigate(['/reservas']);
-  }
-
-  irHorario() {
-  this.router.navigate(['/horario']);
-  }
-
-  crearClase(){
-    this.router.navigate(['/crear-clase']);
   }
 }

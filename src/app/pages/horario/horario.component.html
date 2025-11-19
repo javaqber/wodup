@@ -1,29 +1,159 @@
-<div class="horario-container">
-  <h2>Horario del Box</h2>
+<div class="horarios-container">
+  
+  <header class="page-header">
+    <h1>🕒 Horario Semanal</h1>
+    <p>Consulta nuestras clases y planifica tu semana.</p>
+  </header>
 
-  <section class="horario-bloque">
-    <h3>Clases de mañana</h3>
-    <div class="horario-grid">
-      <div *ngFor="let clase of clasesManana" class="clase-card">
-        <div class="clase-hora">{{ clase.hora }}</div>
-        <div class="clase-info">
-          <p class="tipo">{{ clase.tipo }}</p>
-          <p class="coach">Coach: {{ clase.coach }}</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <div class="horario-card">
+    <div class="table-responsive">
+      <table class="schedule-table">
+        <thead>
+          <tr>
+            <th class="time-col">Horario</th>
+            <th>Lunes</th>
+            <th>Martes</th>
+            <th>Miércoles</th>
+            <th>Jueves</th>
+            <th>Viernes</th>
+            <th class="time-col">Horario</th>
+            <th>Sábado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- MAÑANAS -->
+          <tr>
+            <td class="time">07:00 - 08:00</td>
+            <td class="wod">Crossfit Wod</td>
+            <td class="wod">Crossfit Wod</td>
+            <td class="wod">Crossfit Wod</td>
+            <td class="wod">Crossfit Wod</td>
+            <td class="wod">Crossfit Wod</td>
+            <!-- Sabado -->
+            <td class="time">09:00 - 10:00</td>
+            <td class="wod">Crossfit Wod</td>
+          </tr>
+          <tr>
+            <td class="time">08:00 - 09:00</td>
+            <td class="func">Functional</td>
+            <td class="func">Functional</td>
+            <td class="func">Functional</td>
+            <td class="func">Functional</td>
+            <td class="func">Functional</td>
+            <!-- Sabado -->
+            <td class="time">10:15 - 11:15</td>
+            <td class="wod">Crossfit Wod</td>
+          </tr>
+          <tr>
+            <td class="time">09:00 - 10:00</td>
+            <td class="wod">Crossfit Wod</td>
+            <td class="wod">Crossfit Wod</td>
+            <td class="wod">Crossfit Wod</td>
+            <td class="wod">Crossfit Wod</td>
+            <td class="wod">Crossfit Wod</td>
+            <!-- Sabado -->
+            <td class="time">11:30 - 12:30</td>
+            <td class="open">Open Box</td>
+          </tr>
+          <tr>
+            <td class="time">10:00 - 11:00</td>
+            <td class="open">Open Box</td>
+            <td class="open">Open Box</td>
+            <td class="open">Open Box</td>
+            <td class="open">Open Box</td>
+            <td class="open">Open Box</td>
+            <!-- Sabado -->
+            <td class="time">12:45 - 14:00</td>
+            <td class="open">Open Box</td>
+          </tr>
 
-  <section class="horario-bloque">
-    <h3>Clases de tarde</h3>
-    <div class="horario-grid">
-      <div *ngFor="let clase of clasesTarde" class="clase-card">
-        <div class="clase-hora">{{ clase.hora }}</div>
-        <div class="clase-info">
-          <p class="tipo">{{ clase.tipo }}</p>
-          <p class="coach">Coach: {{ clase.coach }}</p>
-        </div>
-      </div>
+          <tr>
+            <td class="time">11:00 - 12:00</td>
+            <td class="func">Functional</td>
+            <td class="func">Functional</td>
+            <td class="func">Functional</td>
+            <td class="func">Functional</td>
+            <td class="func">Functional</td>
+            <!-- Sabado vacio -->
+            <td class="time"></td> 
+            <td></td>
+          </tr>
+          <tr>
+            <td class="time">13:00 - 14:00</td>
+            <td class="wod">Crossfit Wod</td>
+            <td class="wod">Crossfit Wod</td>
+            <td class="wod">Crossfit Wod</td>
+            <td class="wod">Crossfit Wod</td>
+            <td class="wod">Crossfit Wod</td>
+            <td class="time"></td>
+            <td></td>
+          </tr>
+
+          <!-- TARDES -->
+          <tr>
+            <td class="time">16:00 - 17:00</td>
+            <td class="open">Open Box</td>
+            <td class="open">Open Box</td>
+            <td class="open">Open Box</td>
+            <td class="open">Open Box</td>
+            <td class="open">Open Box</td>
+            <td class="time"></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="time">17:00 - 18:00</td>
+            <td class="wod">Crossfit Wod</td>
+            <td class="wod">Crossfit Wod</td>
+            <td class="wod">Crossfit Wod</td>
+            <td class="wod">Crossfit Wod</td>
+            <td class="wod">Crossfit Wod</td>
+            <td class="time"></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="time">18:00 - 19:00</td>
+            <td class="func">Functional</td>
+            <td class="func">Functional</td>
+            <td class="func">Functional</td>
+            <td class="func">Functional</td>
+            <td class="func">Functional</td>
+            <td class="time"></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="time">19:00 - 20:00</td>
+            <td class="wod">Crossfit Wod</td>
+            <td class="wod">Crossfit Wod</td>
+            <td class="wod">Crossfit Wod</td>
+            <td class="wod">Crossfit Wod</td>
+            <td class="wod">Crossfit Wod</td>
+            <td class="time"></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="time">20:00 - 21:00</td>
+            <td class="func">Functional</td>
+            <td class="func">Functional</td>
+            <td class="func">Functional</td>
+            <td class="func">Functional</td>
+            <td class="func">Functional</td>
+            <td class="time"></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="time">21:00 - 22:00</td>
+            <td class="wod">Crossfit Wod</td>
+            <td class="wod">Crossfit Wod</td>
+            <td class="wod">Crossfit Wod</td>
+            <td class="wod">Crossfit Wod</td>
+            <td class="wod">Crossfit Wod</td>
+            <td class="time"></td>
+            <td></td>
+          </tr>
+          
+          
+        </tbody>
+      </table>
     </div>
-  </section>
+  </div>
 </div>
