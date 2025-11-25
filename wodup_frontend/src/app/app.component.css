@@ -1,0 +1,54 @@
+/* === Encabezado general === */
+header.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background-color: rgba(34, 197, 94, 0.9);
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between; /* separa título y enlaces */
+  align-items: center;
+  padding: 0 2rem; /* espacio lateral interno */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+/* === Título === */
+header.navbar h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* === Navegación === */
+header.navbar nav {
+  display: flex;
+  gap: 1.5rem; /* separación entre enlaces */
+  flex-wrap: wrap;
+}
+
+/* === Enlaces === */
+header.navbar a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+header.navbar a:hover {
+  color: #c8e6c9; 
+  transform: translateY(-2px);
+}
+
+/* === Contenido principal === */
+main {
+  margin-top: 100px;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+}
