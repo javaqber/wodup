@@ -16,7 +16,8 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 //@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
-@CrossOrigin(origins = "*", allowedHeaders = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT,
+@CrossOrigin(origins = "https://wodup.netlify.app", allowedHeaders = "*", methods = { RequestMethod.GET,
+        RequestMethod.POST, RequestMethod.PUT,
         RequestMethod.DELETE }) // CORS para Angular remoto
 
 @RestController
