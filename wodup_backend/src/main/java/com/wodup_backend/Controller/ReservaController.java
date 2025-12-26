@@ -16,7 +16,8 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 //@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
-@CrossOrigin(origins = "*", maxAge = 3600) // CORS para Angular remoto
+@CrossOrigin(origins = "*", allowedHeaders = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT,
+        RequestMethod.DELETE }) // CORS para Angular remoto
 
 @RestController
 @RequestMapping("/api/reservas")
