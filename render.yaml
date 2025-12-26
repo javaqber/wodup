@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: wodup-backend
+    runtime: java
+    rootDir: wodup_backend
+    buildCommand: mvn clean install -DskipTests
+    startCommand: java -jar target/wodup_backend-0.0.1-SNAPSHOT.jar
+    envVars:
+      - key: JAVA_VERSION
+        value: 21
+      - key: DB_URL
+        value: jdbc:mysql://wodup-db-jvaquero03-e79c.g.aivencloud.com:20274/wodup?sslMode=REQUIRED
+      - key: DB_USER
+        value: avnadmin
+      - key: DB_PASSWORD
+        sync: false
