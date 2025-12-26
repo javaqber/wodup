@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+//@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+@CrossOrigin(origins = "*", maxAge = 3600) // CORS para Angular remoto
+
 @RestController
 @RequestMapping("/api/clases")
 public class ClaseController {

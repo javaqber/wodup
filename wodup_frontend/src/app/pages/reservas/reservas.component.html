@@ -1,0 +1,57 @@
+<div class="reservas-container">
+  <h2>Reservas del día</h2>
+
+  <div *ngIf="!claseDeHoy" class="no-clases">
+    <p>No hay clases programadas para hoy.</p>
+  </div>
+
+  <div *ngIf="claseDeHoy">
+    <div class="franjas">
+      <div
+        *ngFor="let franja of franjas"
+        [class.pasada]="franjaPasada(franja.inicio)"
+        class="franja-item"
+      >
+        <div class="franja-hora">
+          {{ franja.inicio }} - {{ franja.fin }}
+        </div>
+
+        <div class="franja-info">
+          <p class="clase-nombre">{{ claseDeHoy.nombre }}</p>
+          <p class="coach">Coach: {{ claseDeHoy.coachNombre || 'Sin asignar' }}</p>
+          <p class="capacidad">
+            Capacidad: {{ claseDeHoy.capacidad }}
+          </p>
+        </div>
+
+        <div class="franja-acciones">
+          <ng-container *ngIf="!franjaPasada(franja.inicio)">
+            <ng-container *ngIf="getReservaParaFranja(claseDeHoy.id, franja.inicio) as reservaActual; else botonReservar">
+              <!--Boton CANCELAR-->
+              <button
+                (click)="cancelarReserva(reservaActual.id)"
+                class="btn-cancelar"
+              > Cancelar
+              </button>
+            </ng-container>
+            <ng-template #botonReservar>
+              <!--Boton RESERVAR-->
+              <button
+              (click)="reservarClase(claseDeHoy, franja)"
+              class="btn-reservar"
+              >  Reservar
+              </button>
+            </ng-template>
+          </ng-container>
+
+          <ng-container *ngIf="franjaPasada(franja.inicio)">
+            <span class="pasada-texto">Finalizada</span>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p *ngIf="mensaje" class="mensaje-exito">{{ mensaje }}</p>
+  <p *ngIf="error" class="mensaje-error">{{ error }}</p>
+</div>

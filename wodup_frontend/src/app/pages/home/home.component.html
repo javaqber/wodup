@@ -1,0 +1,73 @@
+<div class="home-container">
+  
+  <!-- SECCIÓN DE BIENVENIDA (Hero) -->
+  <!-- No es un header fijo, es un bloque de bienvenida -->
+  <section class="welcome-card">
+    <div class="welcome-text">
+      <h1>Hola, {{ usuario?.nombre }} 👋</h1>
+      <p>Bienvenido a WodUp. ¿Qué quieres hacer hoy?</p>
+    </div>
+
+    <!-- BOTONES DE ACCIÓN RÁPIDA (Centrados) -->
+    <div class="quick-actions">
+      <a routerLink="/reservas" class="action-card">
+        <div class="action-icon">📅</div>
+        <span>Reservas</span>
+      </a>
+      
+      <a routerLink="/horario" class="action-card">
+        <div class="action-icon">🕒</div>
+        <span>Horarios</span>
+      </a>
+
+      <!-- Solo visible para Admin y Coach -->
+      <a *ngIf="esAdminOCoach()" routerLink="/clases" class="action-card admin-card">
+        <div class="action-icon">🛠️</div>
+        <span>Gestión Clases</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- LISTA DE RESERVAS -->
+  <section class="reservas-section">
+    <h2>Mis Próximas Clases</h2>
+
+    <div *ngIf="loading" class="loading">
+      <div class="spinner"></div> Cargando tus clases...
+    </div>
+
+    <div *ngIf="!loading && misReservas.length === 0" class="no-reservas">
+      <p>No tienes clases reservadas próximamente.</p>
+      <a routerLink="/reservas" class="btn-cta">¡Reserva tu plaza!</a>
+    </div>
+
+    <div class="cards-container" *ngIf="!loading && misReservas.length > 0">
+      <!-- Tarjeta de Reserva -->
+      <div class="reserva-card" *ngFor="let reserva of misReservas">
+        <div class="card-header">
+          <!-- Usamos ?. para evitar errores si el objeto clase no viene completo -->
+          <h3>{{ reserva.clase?.nombre || 'Clase WOD' }}</h3>
+          <span class="badge">{{ reserva.estado }}</span>
+        </div>
+        
+        <div class="card-body">
+          <div class="info-row">
+            <span class="icon">📅</span>
+            <span>{{ reserva.clase?.fecha | date:'dd/MM/yyyy' }}</span>
+          </div>
+          
+          <div class="info-row">
+            <span class="icon">⏰</span>
+            <!-- Como arreglaste el backend, esto ya se verá bien -->
+            <span>{{ reserva.horaInicio }} - {{ reserva.horaFin }}</span>
+          </div>
+
+          <div class="info-row">
+            <span class="icon">🏋️</span>
+            <span>Coach: {{ reserva.clase?.coachNombre || 'Staff' }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

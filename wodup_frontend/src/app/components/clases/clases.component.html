@@ -1,0 +1,41 @@
+<div class="clases-container">
+  <h2>Listado de clases</h2>
+
+  <button class="btn-editar" (click)="nuevaClaseVacia()">
+    Crear nueva clase
+  </button>
+
+  <div *ngIf="mostrarFormulario" class="formulario">
+    <h3>{{ claseEditando ? 'Editar clase' : 'Nueva clase' }}</h3>
+
+    <form (ngSubmit)="crearOActualizarClase()">
+      <input type="text" placeholder="Nombre" [(ngModel)]="nuevaClase.nombre" name="nombre" required />
+      <input type="date" [(ngModel)]="nuevaClase.fecha" name="fecha" required />
+      <input type="time" [(ngModel)]="nuevaClase.horaInicio" name="horaInicio" required />
+      <input type="time" [(ngModel)]="nuevaClase.horaFin" name="horaFin" required />
+      <input type="number" placeholder="Capacidad" [(ngModel)]="nuevaClase.capacidad" name="capacidad" required />
+
+      <button type="submit" class="btn-editar">
+        {{ claseEditando ? 'Actualizar' : 'Crear' }}
+      </button>
+    </form>
+  </div>
+
+  <div *ngIf="clases.length > 0; else noClases" class="lista-clases">
+    <div *ngFor="let clase of clases" class="clase-item">
+      <div class="info">
+        <p><strong>{{ clase.nombre }}</strong></p>
+        <p>{{ clase.fecha }} | {{ clase.horaInicio }} - {{ clase.horaFin }}</p>
+        <p>Capacidad: {{ clase.capacidad }}</p>
+      </div>
+      <div class="acciones">
+        <button class="btn-editar" (click)="editarClase(clase)">Editar</button>
+        <button class="btn-eliminar" (click)="eliminarClase(clase.id)">Eliminar</button>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noClases>
+    <p>No hay clases disponibles todavía.</p>
+  </ng-template>
+</div>
