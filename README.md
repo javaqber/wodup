@@ -6,6 +6,30 @@ WodUp es una aplicación web Full-Stack diseñada para la gestión integral de c
 
 La aplicación permite a los Coaches planificar clases y gestionar aforos, mientras que los Atletas pueden reservar su plaza en tiempo real a través de una interfaz moderna y reactiva.
 
+🚀 Demo en Vivo
+Puedes probar la aplicación aquí: [https://wodup.netlify.app](https://wodup.netlify.app)
+**Usuario de prueba:** manuelvega@wodup.com | **Password:** 123456
+
+🛠️ Stack Tecnológico
+
+# Backend (API REST)
+** Java 21 (JDK 21) **
+** Spring Boot 3 **
+** Spring Security 6 + JWT **
+** Spring Data JPA (Hibernate) **
+** MySQL 8 **
+
+# Frontend (SPA)
+** Angular 17+ (Standalone Components) **
+** TypeScript **
+** Tailwind CSS **
+** Angular Signals y RxJS **
+
+# Infraestructua y Devops
+** Render ** (Despliegue de API)
+** Netlify ** (Despliegue de Frontend)
+** Aiven ** (Migración a DB remota)
+
 🚀 Funcionalidades Principales
 
 🔒 Seguridad y Autenticación
@@ -30,40 +54,6 @@ Reservas: Sistema de reserva de plaza con validación de cupo y duplicidad.
 
 Gestión de Reservas: Posibilidad de cancelar reservas y ver el estado ("Mis Reservas").
 
-🛠️ Stack Tecnológico
-
-Backend (API REST)
-
-Lenguaje: Java 21 (JDK 21)
-
-Framework: Spring Boot 3
-
-Seguridad: Spring Security 6 + JWT
-
-Persistencia: Spring Data JPA (Hibernate)
-
-Base de Datos: MySQL 8
-
-Frontend (SPA)
-
-Framework: Angular 17+ (Standalone Components)
-
-Lenguaje: TypeScript
-
-Estilos: Tailwind CSS
-
-Estado: Angular Signals y RxJS
-
-Comunicación: HTTP Client con Interceptores para JWT
-
-
-📸 Capturas de Pantalla
-
-####
-
-Login
-
-Dashboard Reservas
 
 🧪 Testing de la API (Postman)
 
