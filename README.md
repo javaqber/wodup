@@ -56,65 +56,10 @@ Estado: Angular Signals y RxJS
 
 Comunicación: HTTP Client con Interceptores para JWT
 
-⚙️ Instalación y Despliegue Local
-
-Sigue estos pasos para ejecutar el proyecto en tu máquina local.
-
-Prerrequisitos
-
-Java JDK 21
-
-Node.js (v18 o superior) y npm
-
-MySQL Server
-
-1. Configuración de Base de Datos
-
-Crea una base de datos vacía en MySQL llamada wodup.
-
-CREATE DATABASE wodup;
-
-2. Configuración del Backend
-
-Navega a la carpeta del servidor:
-
-cd wodup_backend
-
-Configura tus credenciales de base de datos en src/main/resources/application.properties:
-
-spring.datasource.url=jdbc:mysql://localhost:3306/wodup
-spring.datasource.username=TU_USUARIO
-spring.datasource.password=TU_CONTRASEÑA
-
-# JWT Secret (asegúrate de cambiar esto en producción)
-
-wodup.jwt.secret=TU_CLAVE_SECRETA_BASE64...
-
-Ejecuta la aplicación:
-
-mvn spring-boot:run
-
-El servidor iniciará en http://localhost:8080.
-
-3. Configuración del Frontend
-
-Navega a la carpeta del cliente:
-
-cd wodup-frontend
-
-Instala las dependencias:
-
-npm install
-
-Inicia el servidor de desarrollo:
-
-ng serve
-
-La aplicación estará disponible en http://localhost:4200.
 
 📸 Capturas de Pantalla
 
-(Aquí puedes añadir imágenes de tu aplicación. Guarda las capturas en una carpeta /assets en tu repo y enlázalas aquí)
+####
 
 Login
 
@@ -132,12 +77,12 @@ POST /api/clases/reservar/{id}: Reservar (Requiere token Athlete).
 
 👤 Autor
 
-[Tu Nombre Completo]
+- Javier Vaquero Berrocal
 
 Desarrollador Full-Stack (Java/Angular)
 
-[LinkedIn](Enlace a tu LinkedIn)
+[LinkedIn] www.linkedin.com/in/javier-vaquero-dev35b5176
 
-[Portfolio](Enlace a tu web si tienes)
+[Portfolio] ###
 
 Desarrollado como Proyecto de Fin de Grado (TFG) - Desarrollo de Aplicaciones Web (DAW).
