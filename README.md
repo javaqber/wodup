@@ -9,7 +9,7 @@ La aplicación permite a los Coaches planificar clases y gestionar aforos, mient
 ## 📍 Demo en Vivo
 Puedes probar la aplicación aquí: 
 [https://wodup.netlify.app](https://wodup.netlify.app)
-**Usuario de prueba:** manuelvega@wodup.com | **Password:** 123456
+**Usuario de prueba:** userDemo@wodup.com | **Password:** 123456
 
 ## 🛠️ Stack Tecnológico
 # Backend (API REST)
@@ -73,6 +73,6 @@ Desarrollador Full-Stack (Java/Angular)
 
 [LinkedIn] www.linkedin.com/in/javier-vaquero-dev35b5176
 
-[Portfolio] ###
+[Portfolio] https://portfoliojvb.netlify.app/
 
 Desarrollado como Proyecto de Fin de Grado (TFG) - Desarrollo de Aplicaciones Web (DAW).
